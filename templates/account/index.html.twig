@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block body %}
+
+<div class="container mx-auto p-6 max-w-md">
+
+    {% include '_components/_returnButton.html.twig' %}
+
+    <div class="flex flex-col mt-6">
+
+        <div class="
+        grid grid-cols-3 place-items-center
+        p-2 w-auto
+        bg-white rounded-lg shadow-md">
+
+            <div class="bg-slate-100 shadow-md rounded-lg w-full h-full m-2 place-items-center">
+                <p>photo</p>
+                <img class=""/>
+            </div>
+            <div class="m-2 col-span-2 text-center">
+                <p class="text-2xl font-semibold m-1">Bienvenue {username}</p>
+                <p class="text-lg">Client n°XXXXX</p>
+            </div>
+        </div>
+
+        <div class="
+        flex flex-col place-items-center
+        p-2 my-3 w-auto
+        bg-white rounded-lg shadow-md">
+            <a href="{{ path('app_cart') }}" class="
+            px-4 py-2 my-3 w-3/4
+            border rounded-full bg-blue-600 hover:bg-blue-700
+            text-white text-center
+            ">Voir mon panier</a>
+
+            <a href="{{ path('app_home') }}" class="
+            px-4 py-2 my-3 w-3/4
+            border rounded-full bg-blue-600 hover:bg-blue-700
+            text-white text-center
+            ">Voir mes articles en vente</a>
+        </div>
+
+        <p>modifier profil</p>
+    </div>
+</div>
+{% endblock %}
