@@ -1,9 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Connexion{% endblock %}
+{% block title %}Inscription{% endblock %}
 
 {% block body %}
-
 
 <div class="container mx-auto p-6 max-w-md">
 
@@ -17,18 +16,24 @@
             <p class="my-2 text-lg">Votre Email:</p>
             <input type="text" id="email" class="border border-blue-600 mb-3" required>
 
+            <p class="my-2 text-lg">Nom d'utilisateur:</p>
+            <input type="text" id="username" class="border border-blue-600 mb-3" required>
+
             <p class="my-2 text-lg">Mot de passe:</p>
             <input type="text" id="password" class="border border-blue-600 mb-3" required>
 
+            <p class="my-2 text-lg">Confirmez le Mot de passe:</p>
+            <input type="text" id="confirm_password" class="border border-blue-600 mb-3" required>
+
             <br/>
-            <input type="button" value="Envoyer" class="
+            <input type="button" value="S'inscrire" class="
                 px-4 py-2 my-3
                 border rounded-full bg-blue-600 hover:bg-blue-700
                 text-white">
         </form>
 
-        <p class="text-base">Vous n'avez pas de compte ?</p>
-        <a href="{{ path('app_signup') }}" class="text-base text-blue-600">Inscrivez-vous</a>
+        <p class="text-base">Vous avez déjà un compte ?</p>
+        <a href="{{ path('app_login') }}" class="text-base text-blue-600">Connectez-vous</a>
     </div>
 </div>
 
