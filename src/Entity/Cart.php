@@ -5,22 +5,48 @@ namespace App\Entity;
 use App\Repository\CartRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
-class Cart {
+#[ORM\Entity(repositoryClass: CartRepository::class)]
+class Cart
+{
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: "integer")]
-    private int $id;
+    #[ORM\Column]
+    private ?int $id = null;
 
-    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\ManyToOne(inversedBy: 'carts')]
     #[ORM\JoinColumn(nullable: false)]
-    private User $user;
+    private ?User $id_user = null;
 
-    #[ORM\ManyToOne(targetEntity: Article::class)]
+    #[ORM\ManyToOne(inversedBy: 'carts')]
     #[ORM\JoinColumn(nullable: false)]
-    private Article $article;
+    private ?Article $id_article = null;
 
-    #[ORM\Column(type: "integer")]
-    private int $quantity = 1;
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getIdUser(): ?User
+    {
+        return $this->id_user;
+    }
+
+    public function setIdUser(?User $id_user): static
+    {
+        $this->id_user = $id_user;
+
+        return $this;
+    }
+
+    public function getIdArticle(): ?Article
+    {
+        return $this->id_article;
+    }
+
+    public function setIdArticle(?Article $id_article): static
+    {
+        $this->id_article = $id_article;
+
+        return $this;
+    }
 }
-
