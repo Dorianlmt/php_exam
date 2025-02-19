@@ -10,7 +10,10 @@ module.exports = {
         bodyColor: '#353535',
         customRed: '#dddddd',
         customWhite: '#7e191b',
-      }
+      },
+      fontFamily: {
+        oxanium: ['Oxanium']
+      },
     },
   },
   plugins: [],
