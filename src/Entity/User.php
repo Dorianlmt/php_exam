@@ -6,9 +6,11 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-class User
+class User implements PasswordAuthenticatedUserInterface, UserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -16,10 +18,10 @@ class User
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
-    private ?string $Username = null;
+    private ?string $username = null; // Correction : en minuscule
 
-    #[ORM\Column(length: 30)]
-    private ?string $password = null;
+    #[ORM\Column(length: 1000)]
+    private ?string $password = null; // Correction : augmenter la taille pour stocker un hash sécurisé
 
     #[ORM\Column(length: 255)]
     private ?string $email = null;
@@ -32,24 +34,6 @@ class User
 
     #[ORM\Column(type: 'json')]
     private array $roles = [];
-
-    /**
-     * @var Collection<int, Article>
-     */
-    #[ORM\OneToMany(targetEntity: Article::class, mappedBy: 'id_author')]
-    private Collection $articles;
-
-    /**
-     * @var Collection<int, Cart>
-     */
-    #[ORM\OneToMany(targetEntity: Cart::class, mappedBy: 'id_user')]
-    private Collection $carts;
-
-    /**
-     * @var Collection<int, Invoice>
-     */
-    #[ORM\OneToMany(targetEntity: Invoice::class, mappedBy: 'id_user')]
-    private Collection $invoices;
 
     public function __construct()
     {
@@ -65,13 +49,12 @@ class User
 
     public function getUsername(): ?string
     {
-        return $this->Username;
+        return $this->username;
     }
 
-    public function setUsername(string $Username): static
+    public function setUsername(string $username): static
     {
-        $this->Username = $Username;
-
+        $this->username = $username;
         return $this;
     }
 
@@ -83,7 +66,6 @@ class User
     public function setPassword(string $password): static
     {
         $this->password = $password;
-
         return $this;
     }
 
@@ -95,7 +77,6 @@ class User
     public function setEmail(string $email): static
     {
         $this->email = $email;
-
         return $this;
     }
 
@@ -107,7 +88,6 @@ class User
     public function setSolde(float $solde): static
     {
         $this->solde = $solde;
-
         return $this;
     }
 
@@ -119,7 +99,6 @@ class User
     public function setImageProfile(?string $imageProfile): static
     {
         $this->imageProfile = $imageProfile;
-
         return $this;
     }
 
@@ -131,97 +110,17 @@ class User
     public function setRoles(array $roles): static
     {
         $this->roles = $roles;
-
         return $this;
     }
 
-    /**
-     * @return Collection<int, Article>
-     */
-    public function getArticles(): Collection
+    // 🔹 Méthodes obligatoires pour UserInterface
+    public function eraseCredentials(): void
     {
-        return $this->articles;
+        // Cette méthode est utilisée par Symfony pour nettoyer les infos sensibles
     }
 
-    public function addArticle(Article $article): static
+    public function getUserIdentifier(): string
     {
-        if (!$this->articles->contains($article)) {
-            $this->articles->add($article);
-            $article->setIdAuthor($this);
-        }
-
-        return $this;
-    }
-
-    public function removeArticle(Article $article): static
-    {
-        if ($this->articles->removeElement($article)) {
-            // set the owning side to null (unless already changed)
-            if ($article->getIdAuthor() === $this) {
-                $article->setIdAuthor(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Cart>
-     */
-    public function getCarts(): Collection
-    {
-        return $this->carts;
-    }
-
-    public function addCart(Cart $cart): static
-    {
-        if (!$this->carts->contains($cart)) {
-            $this->carts->add($cart);
-            $cart->setIdUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCart(Cart $cart): static
-    {
-        if ($this->carts->removeElement($cart)) {
-            // set the owning side to null (unless already changed)
-            if ($cart->getIdUser() === $this) {
-                $cart->setIdUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Invoice>
-     */
-    public function getInvoices(): Collection
-    {
-        return $this->invoices;
-    }
-
-    public function addInvoice(Invoice $invoice): static
-    {
-        if (!$this->invoices->contains($invoice)) {
-            $this->invoices->add($invoice);
-            $invoice->setIdUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeInvoice(Invoice $invoice): static
-    {
-        if ($this->invoices->removeElement($invoice)) {
-            // set the owning side to null (unless already changed)
-            if ($invoice->getIdUser() === $this) {
-                $invoice->setIdUser(null);
-            }
-        }
-
-        return $this;
+        return $this->username; // Symfony attend un identifiant unique
     }
 }
