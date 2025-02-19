@@ -4,32 +4,39 @@
 
 {% block body %}
 
+{% include '_components/_returnButton.html.twig' %}
 
-<div class="container mx-auto p-6 max-w-md">
+<!--Connexion-->
+<div class="text-center mt-24">
+    <p class="text-4xl font-semibold font-oxanium text-customWhite my-3">Connexion</p>
 
-    {% include '_components/_returnButton.html.twig' %}
+    <form id="login" class="flex flex-col place-items-center">
 
-    <!--Connexion-->
-    <div class="bg-white shadow-md rounded-lg p-6 mt-6 text-center">
-        <p class="text-lg font-semibold">Se connecter</p>
+        <div class="my-3 flex flex-col text-left w-2/3">
+            <p class="text-2xl font-oxanium text-customWhite mb-2">Email:</p>
+            <input type="email" id="email" class="
+                mb-3 h-10
+                border-2 focus:border-3 border-customRed focus:outline-none rounded-[5px]
+                bg-customWhite font-oxanium text-xl" required>
+        </div>
 
-        <form id="login">
-            <p class="mt-2 text-lg">Votre Email:</p>
-            <input type="text" id="email" class="border border-blue-600 mb-3 rounded-md bg-slate-100" required>
+        <div class="my-3 flex flex-col text-left w-2/3">
+            <p class="text-2xl font-oxanium text-customWhite mb-2">Mot de passe:</p>
+            <input type="password" id="password" class="
+                mb-3 h-10
+                border-2 focus:border-3 border-customRed focus:outline-none rounded-[5px]
+                bg-customWhite font-oxanium text-xl" required>
+            <a href="" class="underline text-sm font-oxanium text-right text-customWhite">mot de passe oublié ?</a>
+        </div>
 
-            <p class="mt-2 text-lg">Mot de passe:</p>
-            <input type="text" id="password" class="border border-blue-600 mb-3 rounded-md bg-slate-100" required>
+        <input type="button" value="Se connecter" class="
+            px-4 py-2 my-5 h-1/2 w-2/3
+            border-2 border-customWhite rounded-md bg-customRed shadow-md
+            text-customWhite text-xl font-semibold font-oxanium">
+    </form>
 
-            <br/>
-            <input type="button" value="Envoyer" class="
-                px-4 py-2 my-3
-                border rounded-full bg-blue-600 hover:bg-blue-700
-                text-white">
-        </form>
-
-        <p class="text-base">Vous n'avez pas de compte ?</p>
-        <a href="{{ path('app_signup') }}" class="text-base text-blue-600">Inscrivez-vous</a>
-    </div>
+    <p class="font-oxanium text-customWhite">Vous n'avez pas de compte ?</p>
+    <a href="{{ path('app_signup') }}" class="font-oxanium text-customWhite underline">Inscrivez-vous</a>
 </div>
 
 {% endblock %}
