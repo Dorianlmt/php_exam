@@ -10,4 +10,4 @@
 
 # Lancer le build TailwindCSS:
 
-`symfony console tailwindcss:build --watch`
+`symfony console tailwind:build --watch`
