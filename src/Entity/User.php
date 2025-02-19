@@ -121,6 +121,6 @@ class User implements PasswordAuthenticatedUserInterface, UserInterface
 
     public function getUserIdentifier(): string
     {
-        return $this->username; // Symfony attend un identifiant unique
+        return $this->email; // Symfony attend un identifiant unique
     }
 }

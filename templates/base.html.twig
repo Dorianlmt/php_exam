@@ -26,9 +26,16 @@
 
         <!-- Icônes utilisateur et panier alignées à droite -->
         <div class="flex space-x-6 ml-auto">
-            <a href="{{ path('app_login') }}" class="text-white hover:text-gray-300 transform scale-100 hover:scale-110 transition duration-200">
-                <i class="fas fa-user text-xl"></i> <!-- Icône utilisateur -->
-            </a>
+          {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <a href="{{ path('app_profile') }}" class="text-white hover:text-gray-300 transform scale-100 hover:scale-110 transition duration-200">
+        <i class="fas fa-user text-xl"></i> <!-- Icône utilisateur -->
+        </a>
+        {% else %}
+        <a href="{{ path('app_login') }}" class="text-white hover:text-gray-300 transform scale-100 hover:scale-110 transition duration-200">
+        <i class="fas fa-user text-xl"></i> <!-- Icône utilisateur -->
+        </a>
+{% endif %}
+
             <a href="{{ path('app_cart') }}" class="text-white transform scale-100 hover:scale-110 transition duration-200">
                 <i class="fas fa-shopping-cart text-xl"></i> <!-- Icône panier -->
             </a>

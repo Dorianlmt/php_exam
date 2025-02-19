@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil de {{ user.username }}{% endblock %}
+
+{% block body %}
+<div class="max-w-2xl mx-auto bg-white shadow-md rounded-lg p-6 mt-10">
+    <h1 class="text-2xl font-bold text-center mb-4">Bienvenue, {{ user.username }}</h1>
+
+    <!-- Image de profil -->
+    <div class="flex justify-center mb-4">
+        <img src="{{ user.imageProfile ?: 'https://via.placeholder.com/150' }}" 
+             alt="Photo de profil" 
+             class="rounded-full h-24 w-24 border">
+    </div>
+
+    <!-- Infos utilisateur -->
+    <div class="text-center">
+        <p class="text-lg text-gray-700"><strong>Email :</strong> {{ user.email }}</p>
+        <p class="text-lg text-gray-700"><strong>Solde :</strong> {{ user.solde }} €</p>
+        <p class="text-lg text-gray-700"><strong>Rôles :</strong> {{ user.roles|join(', ') }}</p>
+    </div>
+
+    <!-- Boutons d'actions -->
+    <div class="flex justify-center mt-6">
+        <a href="{{ path('app_home') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Retour à l'accueil</a>
+        <a href="{{ path('app_logout') }}" class="ml-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 transition">Déconnexion</a>
+    </div>
+</div>
+{% endblock %}
