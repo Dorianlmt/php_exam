@@ -8,8 +8,8 @@ module.exports = {
     extend: {
       colors: {
         bodyColor: '#353535',
-        customRed: '#dddddd',
-        customWhite: '#7e191b',
+        customRed: '#7e191b',
+        customWhite: '#dddddd',
       },
       fontFamily: {
         oxanium: ['Oxanium']
