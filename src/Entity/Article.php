@@ -14,43 +14,43 @@ class Article
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $nom = null;
+    private ?string $name = null;
 
     #[ORM\Column(type: "text")]
     private ?string $description = null;
 
     #[ORM\Column(type: "float")]
-    private ?float $prix = null;
+    private ?float $price = null;
 
     #[ORM\Column(type: "datetime")]
     private ?\DateTimeInterface $date_publication = null;
 
     #[ORM\Column(type: "integer")]
-    private ?int $auteur_id = null;
+    private ?int $id_author_id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $imageUrl = null;
+    private ?string $image = null;
 
      // Getter et Setter pour imageUrl
-     public function getImageUrl(): ?string
+     public function getImage(): ?string
      {
-         return $this->imageUrl;
+         return $this->image;
      }
  
-     public function setImageUrl(string $imageUrl): self
+     public function setImage(string $image): self
      {
-         $this->imageUrl = $imageUrl;
+         $this->image = $image;
          return $this;
      }
 
-     public function getNom(): ?string
+     public function getName(): ?string
      {
-         return $this->nom;
+         return $this->name;
      }
  
-     public function setNom(string $nom): self
+     public function setName(string $name): self
      {
-         $this->nom = $nom;
+         $this->name = $name;
          return $this;
      }
 
@@ -65,14 +65,14 @@ class Article
         return $this;
      }
 
-     public function getPrix(): ?float
+     public function getPrice(): ?float
      {
-        return $this->prix;
+        return $this->price;
      }
 
-     public function setPrix(float $prix)
+     public function setPrix(float $price)
      {
-        $this -> prix = $prix;
+        $this -> price = $price;
         return $this;
      }
 }
