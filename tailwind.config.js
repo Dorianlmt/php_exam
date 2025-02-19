@@ -6,6 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      borderWidth: {
+        '3': '3px',
+      },
       colors: {
         bodyColor: '#353535',
         customRed: '#7e191b',
