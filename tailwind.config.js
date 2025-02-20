@@ -20,6 +20,9 @@ module.exports = {
       fontFamily: {
         oxanium: ['Oxanium']
       },
+      boxShadow: {
+        'glow': '0px 0px 5px rgba(255, 255, 255, 0.9)',
+      },
     },
   },
   plugins: [],

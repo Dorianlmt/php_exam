@@ -15,4 +15,12 @@ final class CartController extends AbstractController
             'controller_name' => 'CartController',
         ]);
     }
+
+    #[Route('/cart/validate', name: 'app_cart_validate')]
+    public function validate(): Response
+    {
+        return $this->render('cart/validate.html.twig', [
+            'controller_name' => 'CartController',
+        ]);
+    }
 }
