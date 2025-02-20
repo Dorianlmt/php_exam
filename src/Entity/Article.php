@@ -2,10 +2,13 @@
 
 namespace App\Entity;
 
+use App\Repository\ArticleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use phpDocumentor\Reflection\Types\Float_;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: ArticleRepository::class)]
 class Article
 {
     #[ORM\Id]
@@ -14,65 +17,176 @@ class Article
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $nom = null;
+    private ?string $name = null;
 
-    #[ORM\Column(type: "text")]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column(type: "float")]
-    private ?float $prix = null;
+    #[ORM\Column]
+    private ?float $price = null;
 
-    #[ORM\Column(type: "datetime")]
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date_publication = null;
 
-    #[ORM\Column(type: "integer")]
-    private ?int $auteur_id = null;
+    #[ORM\ManyToOne(inversedBy: 'articles')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $id_author = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $imageUrl = null;
+    private ?string $image = null;
 
-     // Getter et Setter pour imageUrl
-     public function getImageUrl(): ?string
-     {
-         return $this->imageUrl;
-     }
- 
-     public function setImageUrl(string $imageUrl): self
-     {
-         $this->imageUrl = $imageUrl;
-         return $this;
-     }
+    /**
+     * @var Collection<int, Cart>
+     */
+    #[ORM\OneToMany(targetEntity: Cart::class, mappedBy: 'id_article')]
+    private Collection $carts;
 
-     public function getNom(): ?string
-     {
-         return $this->nom;
-     }
- 
-     public function setNom(string $nom): self
-     {
-         $this->nom = $nom;
-         return $this;
-     }
+    /**
+     * @var Collection<int, Stock>
+     */
+    #[ORM\OneToMany(targetEntity: Stock::class, mappedBy: 'id_article')]
+    private Collection $stocks;
 
-     public function getDescription(): ?string
-     {
+    public function __construct()
+    {
+        $this->carts = new ArrayCollection();
+        $this->stocks = new ArrayCollection();
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
         return $this->description;
-     }
-    
-     public function setDescription(string $description): self
-     {
+    }
+
+    public function setDescription(?string $description): static
+    {
         $this->description = $description;
-        return $this;
-     }
 
-     public function getPrix(): ?float
-     {
-        return $this->prix;
-     }
-
-     public function setPrix(float $prix)
-     {
-        $this -> prix = $prix;
         return $this;
-     }
+    }
+
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
+
+    public function setPrice(float $price): static
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    public function getDatePublication(): ?\DateTimeInterface
+    {
+        return $this->date_publication;
+    }
+
+    public function setDatePublication(\DateTimeInterface $date_publication): static
+    {
+        $this->date_publication = $date_publication;
+
+        return $this;
+    }
+
+    public function getIdAuthor(): ?User
+    {
+        return $this->id_author;
+    }
+
+    public function setIdAuthor(?User $id_author): static
+    {
+        $this->id_author = $id_author;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): static
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Cart>
+     */
+    public function getCarts(): Collection
+    {
+        return $this->carts;
+    }
+
+    public function addCart(Cart $cart): static
+    {
+        if (!$this->carts->contains($cart)) {
+            $this->carts->add($cart);
+            $cart->setIdArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCart(Cart $cart): static
+    {
+        if ($this->carts->removeElement($cart)) {
+            // set the owning side to null (unless already changed)
+            if ($cart->getIdArticle() === $this) {
+                $cart->setIdArticle(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Stock>
+     */
+    public function getStocks(): Collection
+    {
+        return $this->stocks;
+    }
+
+    public function addStock(Stock $stock): static
+    {
+        if (!$this->stocks->contains($stock)) {
+            $this->stocks->add($stock);
+            $stock->setIdArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStock(Stock $stock): static
+    {
+        if ($this->stocks->removeElement($stock)) {
+            // set the owning side to null (unless already changed)
+            if ($stock->getIdArticle() === $this) {
+                $stock->setIdArticle(null);
+            }
+        }
+
+        return $this;
+    }
 }

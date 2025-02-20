@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ article.name }}{% endblock %}
+
+{% block body %}
+<div class="max-w-3xl mx-auto p-6">
+    <div class="bg-white shadow-md rounded-lg p-6">
+        <img src="{{ article.image }}" alt="{{ article.name }}" class="w-full h-60 object-cover rounded-md">
+        <h1 class="text-2xl font-bold mt-4">{{ article.name }}</h1>
+        <p class="text-gray-600 mt-2">{{ article.description }}</p>
+        <p class="text-blue-600 font-bold text-xl mt-4">{{ article.price }} €</p>
+
+        <a href="{{ path('app_home') }}" 
+           class="mt-4 inline-block bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700 transition">
+            Retour à la boutique
+        </a>
+        <a href="{{ path('app_cart_add', { 'id': article.id }) }}"
+        class="mt-4 inline-block bg-green-500 text-white px-4 py-2 rounded hover:bg-gray-700 transition">
+        Ajouter au panier
+        </a>
+    </div>
+</div>
+{% endblock %}
