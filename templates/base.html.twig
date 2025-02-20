@@ -28,8 +28,17 @@
     </main>
 
     <!-- Footer collé en bas de la page -->
-    <footer class="bg-gray-800 text-white text-center py-4 mt-10 w-full">
-        <p>&copy; {{ "now"|date("Y") }} - Mon Site Symfony</p>
+    <footer class="bg-red-900 text-white text-center py-6 mt-8">
+        <img src="{{ asset('technova.png') }}" alt="TechNova Logo" class="mx-auto w-16">
+        <p><i class="fa-solid fa-location-dot"></i> RENNES | <i class="fa-solid fa-phone"></i> 01.02.03.04.05</p>
+        <p><i class="fa-solid fa-envelope"></i> <a href="mailto:contact@technova.com" class="underline">contact@technova.com</a></p>
+        <img src="{{ asset('paypal.png') }}" alt="PayPal" class="mx-auto my-3 w-16">
+        <div class="mt-4">
+            <a href="" class="text-xs mt-2 underline">Conditions Générales de Vente</a><br>
+            <a href="" class="text-xs mt-2 underline">Politique de Confidentialité</a><br>
+            <a href="" class="text-xs mt-2 underline">Cookies</a><br>
+            <a href="" class="text-xs mt-2 underline">Mentions légales</a>
+        </div>
     </footer>
 
 </body>
