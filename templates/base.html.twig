@@ -19,6 +19,9 @@
 <body class="bg-bodyColor text-gray-900 flex flex-col min-h-screen">
 
     <!-- Header fixe en haut -->
+    <header>
+        {% include '_components/_navigationMenu.html.twig' %}
+    </header>
     
     <main class="container mx-auto mt-20 flex-grow">
         {% block body %}{% endblock %}
