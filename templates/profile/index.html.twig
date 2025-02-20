@@ -17,13 +17,13 @@
                     alt="Photo de profil" 
                     class="rounded-lg h-24 w-24 border bg-bodyColor m-2">
             </div>
-            <p class="m-2 text-3xl text-customWhite font-oxanium font-bold text-center">{user.username}</p>
+            <p class="m-2 text-2xl text-customWhite font-oxanium font-bold text-center">{user.username}</p>
         </div>
 
         <!-- Infos utilisateur -->
         <div class="text-left">
             <p class="text-xl text-customWhite font-oxanium"><strong>Email :</strong> {user.email}</p>
-            <p class="text-xl text-customWhite font-oxanium"><strong>Solde :</strong> {user.solde} €</p>
+            <p class="text-xl text-customWhite font-oxanium"><strong>Solde :</strong> {user.solde}€</p>
             <!-- <p class="text-lg text-gray-700"><strong>Rôles :</strong> { user.roles|join(', ') }}</p> -->
         </div>
     </div>
@@ -39,15 +39,15 @@
         <a href="" class="
             bg-customRed rounded hover:bg-[#974748] transition duration-150
             text-customWhite text-xl font-oxanium text-center
-            w-4/5 py-2">Voir mes articles en vente</a>
+            w-4/5 py-2">Voir mes articles</a>
 
         <a href="{{ path('app_home') }}" class="
-            bg-customWhite rounded hover:bg-[#494949] transition duration-150
+            bg-customWhite rounded hover:bg-[#9a9a9a] transition duration-150
             text-bodyColor text-xl font-oxanium text-center
             w-4/5 py-2"><i class="fa-solid fa-house mr-2"></i>Retour à l'accueil</a>
 
         <a href="{{ path('app_home') }}" class="
-            bg-bodyColor rounded hover:bg-[#974748] transition duration-150 border border-customWhite
+            bg-bodyColor rounded hover:bg-customRed transition duration-150 border border-customWhite
             text-customWhite text-lg font-oxanium text-center
             w-4/5 py-2">
             <i class="fa-solid fa-right-to-bracket mr-2"></i>Déconnexion</a>
