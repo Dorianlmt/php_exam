@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&display=swap" rel="stylesheet">
     <title>{% block title %}Mon Site Symfony{% endblock %}</title>
 
     <!-- Font Awesome pour les icônes -->
@@ -18,42 +21,26 @@
 <body class="bg-gray-100 text-gray-900 flex flex-col min-h-screen">
 
     <!-- Header fixe en haut -->
-    <header class="bg-blue-600 text-white fixed top-0 w-full py-4 shadow-md">
-    <nav class="container mx-auto flex items-center justify-between px-6">
-        <!-- Liens du menu -->
-        <div class="flex space-x-6">
-            <a href="{{ path('app_home') }}" class="hover:underline">Accueil</a>
-            <a href="#" class="hover:underline">À propos</a>
-        </div>
+    <header class="">
+    {% include '_components/_navigationMenu.html.twig' %}
+    </header>
 
-        <!-- Icônes utilisateur et panier alignées à droite -->
-        <div class="flex space-x-6 ml-auto">
-          {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        <a href="{{ path('app_profile') }}" class="text-white hover:text-gray-300 transform scale-100 hover:scale-110 transition duration-200">
-        <i class="fas fa-user text-xl"></i> <!-- Icône utilisateur -->
-        </a>
-        {% else %}
-        <a href="{{ path('app_login') }}" class="text-white hover:text-gray-300 transform scale-100 hover:scale-110 transition duration-200">
-        <i class="fas fa-user text-xl"></i> <!-- Icône utilisateur -->
-        </a>
-{% endif %}
-
-            <a href="{{ path('app_cart') }}" class="text-white transform scale-100 hover:scale-110 transition duration-200">
-                <i class="fas fa-shopping-cart text-xl"></i> <!-- Icône panier -->
-            </a>
-        </div>
-    </nav>
-</header>
-
-
-    
     <main class="container mx-auto mt-20 flex-grow">
         {% block body %}{% endblock %}
     </main>
 
     <!-- Footer collé en bas de la page -->
-    <footer class="bg-gray-800 text-white text-center py-4 mt-10 w-full">
-        <p>&copy; {{ "now"|date("Y") }} - Mon Site Symfony</p>
+    <footer class="bg-red-900 text-white text-center py-6 mt-8">
+        <img src="{{ asset('images/technova.png') }}" alt="TechNova Logo" class="mx-auto w-16">
+        <p><i class="fa-solid fa-location-dot"></i> RENNES | <i class="fa-solid fa-phone"></i> 01.02.03.04.05</p>
+        <p><i class="fa-solid fa-envelope"></i> <a href="mailto:contact@technova.com" class="underline">contact@technova.com</a></p>
+        <img src="{{ asset('images/paypal.png') }}" alt="PayPal" class="mx-auto my-3 w-16">
+        <div class="mt-4">
+            <a href="" class="text-xs mt-2 underline">Conditions Générales de Vente</a><br>
+            <a href="" class="text-xs mt-2 underline">Politique de Confidentialité</a><br>
+            <a href="" class="text-xs mt-2 underline">Cookies</a><br>
+            <a href="" class="text-xs mt-2 underline">Mentions légales</a>
+        </div>
     </footer>
 
 </body>

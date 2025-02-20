@@ -3,36 +3,40 @@
 {% block title %}Connexion{% endblock %}
 
 {% block body %}
-<div class="container mx-auto p-6 max-w-md">
-    <div class="bg-white shadow-md rounded-lg p-6 mt-6 text-center">
-        <p class="text-lg font-semibold">Se connecter</p>
 
-{% for message in app.flashes('error') %}
-            <p class="text-red-500 bg-red-100 border border-red-400 p-3 rounded mt-3">{{ message }}</p>
-        {% endfor %}
+{% include '_components/_returnButton.html.twig' %}
 
-        {{ dump(app.flashes('error')) }}
+<!--Connexion-->
+<div class="text-center">
+    <p class="text-4xl font-semibold font-oxanium text-customWhite my-3">Connexion</p>
 
-        <form action="{{ path('app_login') }}" method="post">
+    <form action="{{ path('app_login') }}" method="post" class="flex flex-col place-items-center">
 
-            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"> 
+        <div class="my-3 flex flex-col text-left w-2/3">
+            <p class="text-2xl font-oxanium text-customWhite mb-2">Email:</p>
+            <input type="email" name="email" class="
+                mb-3 h-10
+                border-2 focus:border-3 border-customRed focus:outline-none rounded-[5px]
+                bg-customWhite font-oxanium text-xl" required>
+        </div>
 
-            <p class="my-2 text-lg">Votre Email:</p>
-            <input type="email" name="email" class="border border-blue-600 mb-3 w-full p-2" required>
+        <div class="my-3 flex flex-col text-left w-2/3">
+            <p class="text-2xl font-oxanium text-customWhite mb-2">Mot de passe:</p>
+            <input type="password" name="password" class="
+                mb-3 h-10
+                border-2 focus:border-3 border-customRed focus:outline-none rounded-[5px]
+                bg-customWhite font-oxanium text-xl" required>
+            <a href="" class="underline text-sm font-oxanium text-right text-customWhite">mot de passe oubliÃ© ?</a>
+        </div>
 
-            <p class="my-2 text-lg">Mot de passe:</p>
-            <input type="password" name="password" class="border border-blue-600 mb-3 w-full p-2" required>
+        <input type="submit" value="Se connecter" class="
+            px-4 py-2 my-5 h-1/2 w-2/3
+            border-2 border-customWhite rounded-md bg-customRed shadow-md
+            text-customWhite text-xl font-semibold font-oxanium">
+    </form>
 
-            <br/>
-            <input type="submit" value="Se connecter" class="
-                px-4 py-2 my-3
-                border rounded-full bg-blue-600 hover:bg-blue-700
-                text-white cursor-pointer">
-        </form>
-
-    
-        <p class="text-base">Vous n'avez pas de compte ?</p>
-        <a href="{{ path('app_signup') }}" class="text-base text-blue-600">Inscrivez-vous</a>
-    </div>
+    <p class="font-oxanium text-customWhite">Vous n'avez pas de compte ?</p>
+    <a href="{{ path('app_signup') }}" class="font-oxanium text-customWhite underline">Inscrivez-vous</a>
 </div>
+
 {% endblock %}

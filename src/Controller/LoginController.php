@@ -32,7 +32,6 @@ final class LoginController extends AbstractController
                 $this->addFlash('error', 'Email ou mot de passe incorrect.');
                 return $this->redirectToRoute('app_login');
             }
-
             // Authentifier l'utilisateur manuellement
             return $this->redirectToRoute('app_profile');
         }
