@@ -9,6 +9,9 @@ module.exports = {
       borderWidth: {
         '3': '3px',
       },
+      screens: {
+        'xs': '500px'
+      },
       colors: {
         bodyColor: '#353535',
         customRed: '#7e191b',
