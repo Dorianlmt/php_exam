@@ -19,7 +19,22 @@ class Cart
 
     #[ORM\ManyToOne(inversedBy: 'carts')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Article $id_article = null;
+    public ?Article $id_article = null;
+
+    #[ORM\Column(type: 'integer')]
+    private int $quantity = 1; 
+
+public function getQuantity(): int
+{
+    return $this->quantity;
+}
+
+public function setQuantity(int $quantity): static
+{
+    $this->quantity = $quantity;
+    return $this;
+}
+
 
     public function getId(): ?int
     {
@@ -34,7 +49,6 @@ class Cart
     public function setIdUser(?User $id_user): static
     {
         $this->id_user = $id_user;
-
         return $this;
     }
 
@@ -46,7 +60,6 @@ class Cart
     public function setIdArticle(?Article $id_article): static
     {
         $this->id_article = $id_article;
-
         return $this;
     }
 }
