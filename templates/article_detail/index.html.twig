@@ -10,14 +10,32 @@
         <p class="text-gray-600 mt-2">{{ article.description }}</p>
         <p class="text-blue-600 font-bold text-xl mt-4">{{ article.price }} €</p>
 
+        {# Récupération du stock #}
+        {% set stock = article.stocks|first %}
+        <p class="text-red-500 font-semibold mt-2">
+            {% if stock and stock.quantity > 0 %}
+                Stock disponible : {{ stock.quantity }}
+            {% else %}
+                En rupture de stock
+            {% endif %}
+        </p>
+
         <a href="{{ path('app_home') }}" 
            class="mt-4 inline-block bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700 transition">
             Retour à la boutique
         </a>
-        <a href="{{ path('app_cart_add', { 'id': article.id }) }}"
-        class="mt-4 inline-block bg-green-500 text-white px-4 py-2 rounded hover:bg-gray-700 transition">
-        Ajouter au panier
-        </a>
+
+        {# Check de la quantité disponible dans le stock #}
+        {% if stock and stock.quantity > 0 %}
+            <a href="{{ path('app_cart_add', { 'id': article.id }) }}"
+               class="mt-4 inline-block bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 transition">
+                Ajouter au panier
+            </a>
+        {% else %}
+            <button class="mt-4 inline-block bg-gray-400 text-white px-4 py-2 rounded cursor-not-allowed" disabled>
+                Rupture de stock
+            </button>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

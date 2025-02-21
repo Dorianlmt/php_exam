@@ -14,6 +14,7 @@ class Article
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
@@ -46,6 +47,10 @@ class Article
      */
     #[ORM\OneToMany(targetEntity: Stock::class, mappedBy: 'id_article')]
     private Collection $stocks;
+
+    #[ORM\ManyToOne(inversedBy: 'carts')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Article $id_article = null;
 
     public function __construct()
     {
