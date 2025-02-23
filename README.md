@@ -70,7 +70,7 @@ DATABASE_URL="mysql://IDENTIFIANT:PASSWORD@127.0.0.1:3306/php_exam_db?serverVers
 ```
 
 ### 5️⃣ Créer la base de données
-  - Importer la base de donnée `db_exam_php.sql` dans votre phpmyadmin
+  - Importer la base de donnée `php_exam_db.sql` dans votre phpmyadmin
 
 ### 6️⃣ Lancer le serveur symfony et TailwindCSS
 Lancement de symfony :
