@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}À Propos de Nous{% endblock %}
+
+{% block body %}
+
+{% include '_components/_returnButton.html.twig' %}
+
+<div class="container mx-auto px-6 py-12">
+    <h1 class="text-4xl text-center font-oxanium text-customWhite mb-6">À Propos de Nous</h1>
+
+    <!-- Section Présentation -->
+    <section class="bg-customRed p-6 rounded-lg shadow-lg mb-10">
+        <h2 class="text-2xl font-oxanium text-customWhite">Notre Histoire</h2>
+        <p class="font-oxanium text-customWhite mt-2">
+            Depuis notre création en <strong>20XX</strong>, nous nous efforçons de proposer les meilleurs produits à nos clients.  
+            Passionnés par l’innovation et la qualité, nous avons bâti une communauté de milliers d'acheteurs satisfaits.
+        </p>
+    </section>
+
+    <!-- Section Valeurs -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-6 bg-customRed shadow-lg rounded-lg text-center">
+            <i class="fa-solid fa-handshake text-4xl text-blue-600"></i>
+            <h3 class="text-xl font-oxanium text-customWhite  mt-4">Engagement</h3>
+            <p class="font-oxanium text-customWhite mt-2">Nous mettons la satisfaction client au cœur de notre démarche.</p>
+        </div>
+        <div class="p-6 bg-customRed shadow-lg rounded-lg text-center">
+            <i class="fa-solid fa-seedling text-4xl text-green-600"></i>
+            <h3 class="text-xl font-oxanium text-customWhite  mt-4">Éco-Responsabilité</h3>
+            <p class="font-oxanium text-customWhite mt-2">Nous privilégions des produits respectueux de l'environnement.</p>
+        </div>
+        <div class="p-6 bg-customRed shadow-lg rounded-lg text-center">
+            <i class="fa-solid fa-truck-fast text-4xl text-red-600"></i>
+            <h3 class="text-xl font-oxanium text-customWhite mt-4">Livraison Rapide</h3>
+            <p class="font-oxanium text-customWhite mt-2">Votre commande arrive chez vous en un temps record.</p>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+        <h2 class="text-2xl font-oxanium text-customWhite">Contactez-nous</h2>
+        <p class="font-oxanium text-customWhite mt-2">Besoin d’aide ou de plus d’informations ? Notre équipe est à votre disposition.</p>
+        <div class="mt-4">
+            <p><i class="fa-solid fa-envelope text-blue-600"></i> <a href="mailto:contact@votresite.com" class="text-blue-600 underline">contact@votresite.com</a></p>
+            <p class="font-oxanium text-customWhite"><i class="fa-solid fa-phone font-oxanium text-customWhite"></i> 01 02 03 04 05</p>
+            <p class="font-oxanium text-customWhite"><i class="fa-solid fa-location-dot font-oxanium text-customWhite"></i> 123 Rue du Commerce, 35000 Rennes</p>
+        </div>
+    
+</div>
+
+{% endblock %}

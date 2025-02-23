@@ -1,0 +1,115 @@
+<!-- ========== Mobile Navigation ========== -->
+<div class="fixed w-screen bg-customRed flex flex-col place-items-center p-2 xs:hidden">
+    <a href="{{ path('app_home') }}" class="flex flex-row place-items-center">
+        <img src="{{ asset('/images/technova.png')}}" class="w-[48px] h-[48px]">
+        <p class="font-oxanium text-xl text-customWhite">TECHNOVA</p>
+    </a>
+</div>
+
+<nav id='navBurger' class="fixed right-0 bottom-20  grid-cols-3 grid-rows-1 place-items-end xs:hidden">
+
+    <!-- Bouton "Burger" -->
+    <button id="burger" class="
+    h-auto right-0
+    bg-customRed rounded-l-lg
+    shadow-md
+    border-t-3 border-b-3 border-l-3 border-customWhite">
+        <i class="fa-solid fa-bars text-white text-4xl p-3"></i>
+    </button>
+
+    <!-- Liens du menu -->
+    <div id="menu" class="hidden rounded-tl-lg bg-customRed shadow-glow right-0 col-span-3 col-start-2 w-full">
+        <div class="p-1
+        flex flex-col place-items-center
+        text-center
+        ">
+            <a href="{{ path('app_home') }}" class="
+            my-3 mx-2
+            text-3xl text-white font-oxanium
+            ">Accueil</a>
+
+            <hr class="w-5/6" />
+            <a href="{{ path('app_about_us') }}" class="
+            my-3 mx-2
+            text-3xl text-white font-oxanium
+            ">À propos</a>
+
+            <hr class="w-5/6" />
+            <a href="{{ path('app_account') }}" class="
+            my-3 mx-2
+            text-3xl text-white font-oxanium
+            ">Profil</a>
+
+            <hr class="w-5/6" />
+            <a href="{{ path('app_cart') }}" class="
+            my-3 mx-2
+            text-3xl text-white font-oxanium
+            ">Panier</a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <hr class="w-5/6" />
+                <a href="{{ path('app_admin') }}" class="my-3 mx-2 text-3xl text-white font-oxanium">Ajouter</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const burger = document.getElementById("burger");
+        const menu = document.getElementById("menu");
+        const navBurger = document.getElementById("navBurger");
+
+        burger.addEventListener("click", function () {
+            menu.classList.toggle("hidden");
+            navBurger.classList.toggle("grid");
+            navBurger.classList.toggle("w-[320px]");
+        });
+    });
+</script>
+
+
+
+<!-- ========== Desktop Navigation ========== -->
+<div class="hidden xs:block">
+<nav class="flex items-center p-2 bg-customRed shadow-md">
+
+    <!-- Logo Site-->
+    <div class="py-1 px-2 ml-4 rounded bg-customRed hover:bg-[#8a3031] transition duration-150">
+        <a href="{{ path('app_home') }}" class="flex place-items-center">
+            <img src="{{ asset('/images/technova.png')}}" class="w-[48px] h-[48px]">
+            <div class="hidden md:block"><p class="font-oxanium text-3xl text-customWhite">TECHNOVA</p></div>
+        </a>
+    </div>
+
+    <div class="w-[3px] h-[48px] bg-customWhite mx-4 md:mx-8 rounded"></div>
+
+    <!-- Liens du menu -->
+    <div class="flex space-x-6 md:space-x-10">
+        <a href="{{ path('app_home') }}" class="hover:underline text-customWhite font-oxanium text-3xl">Accueil</a>
+        <a href="{{ path('app_about_us') }}" class="hover:underline text-customWhite font-oxanium text-3xl">À propos</a>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('app_admin') }}" class="hover:underline text-customWhite font-oxanium text-3xl">Ajouter</a>
+        {% endif %}
+    </div>
+
+  <!-- Icônes utilisateur et panier alignées à droite -->
+<div class="flex space-x-2 md:space-x-6 ml-auto">
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <!-- Si l'utilisateur est connecté, il est redirigé vers son profil -->
+        <a href="{{ path('app_account') }}" class="py-2 px-2 md:px-4 text-white transform scale-100 rounded hover:bg-[#8a3031] transition duration-150">
+            <i class="fas fa-user text-3xl"></i> <!-- Icône utilisateur -->
+        </a>
+    {% else %}
+        <!-- Sinon, il est redirigé vers la page de connexion -->
+        <a href="{{ path('app_login') }}" class="py-2 px-2 md:px-4 text-white transform scale-100 rounded hover:bg-[#8a3031] transition duration-150">
+            <i class="fas fa-user text-3xl"></i> <!-- Icône utilisateur -->
+        </a>
+    {% endif %}
+    
+    <a href="{{ path('app_cart') }}" class="py-2 px-2 md:px-4 text-white transform scale-100 rounded hover:bg-[#8a3031] transition duration-150">
+        <i class="fas fa-shopping-cart text-3xl"></i> <!-- Icône panier -->
+    </a>
+</div>
+
+</nav>
+</div>

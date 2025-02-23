@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <div class="max-w-4xl mx-auto text-center py-10">
+    <h1 class="text-4xl font-bold text-customWhite font-oxanium">Bienvenue sur TECHNOVA</h1>
+    <p class="text-customWhite font-oxanium mt-4 text-lg">Vente de produits tech</p>
+</div>
+
+    <!-- Section des articles -->
+<div class="container mx-auto px-6">
+    {% if articles is empty %}
+        <p class="text-center text-customWhite font-oxanium">Aucun article disponible pour le moment.</p>
+    {% else %}
+        <div class="w-3/4 m-auto place-items-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-4">
+            {% for article in articles %}
+                <div class="bg-customRed text-customWhite font-oxanium shadow-md rounded-md p-4 h-full w-full grid grid-rows">
+                    <img src="{{ article.image }}" alt="{{ article.name }}" class="w-full h-40 object-cover rounded-md">
+                    <div>
+                        <h2 class="text-xl font-bold mt-2">{{ article.name }}</h2>
+                        <p class="text-sm">{{ article.description|slice(0, 100) }}...</p>
+                        <p class="text-lg font-semibold">{{ article.price }} €</p>
+                    </div>
+                    <a href="{{ path('app_article_detail', { 'id': article.id }) }}" class="mt-3 inline-block bg-bodyColor text-white px-4 py-2 rounded hover:bg-[#494949] transition duration-150 place-self-end">
+                        Voir le produit
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

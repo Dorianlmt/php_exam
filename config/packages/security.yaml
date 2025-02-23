@@ -1,0 +1,44 @@
+security:
+    password_hashers:
+        App\Entity\User:
+            algorithm: auto
+
+    role_hierarchy:
+        ROLE_USER: []
+        ROLE_ADMIN: [ROLE_USER]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN]
+
+    providers:
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
+
+    firewalls:
+        main:
+            lazy: true
+            provider: app_user_provider
+            form_login:
+                login_path: app_login
+                check_path: app_login
+                username_parameter: email
+                password_parameter: password
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 604800 # Reste connecté 1 semaine
+                path: /
+            logout:
+                path: app_logout
+                target: app_login
+            login_throttling: true  # Limite les tentatives de connexion
+
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/profile, roles: ROLE_USER }
+
+framework:
+    session:
+        cookie_secure: auto  # Active "Secure" si HTTPS est utilisé
+        cookie_httponly: true  # Empêche l’accès aux cookies via JavaScript
+        cookie_samesite: strict  # Empêche les attaques CSRF entre sites
+    csrf_protection: true  # Active la protection CSRF pour tous les formulaires
