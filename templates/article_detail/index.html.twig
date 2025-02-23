@@ -36,6 +36,13 @@
                 Rupture de stock
             </button>
         {% endif %}
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <form action="{{ path('app_article_delete', { 'id': article.id }) }}" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer cet article ?');">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
+                <button type="submit" class="bg-bodyColor mt-4 inline-block text-customWhite px-4 py-2 rounded hover:bg-gray-700 transition">Supprimer</button>
+            </form>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

@@ -29,13 +29,13 @@
             ">Accueil</a>
 
             <hr class="w-5/6" />
-            <a href="#" class="
+            <a href="{{ path('app_about_us') }}" class="
             my-3 mx-2
             text-3xl text-white font-oxanium
             ">À propos</a>
 
             <hr class="w-5/6" />
-            <a href="{{ path('app_profile') }}" class="
+            <a href="{{ path('app_account') }}" class="
             my-3 mx-2
             text-3xl text-white font-oxanium
             ">Profil</a>
@@ -45,6 +45,10 @@
             my-3 mx-2
             text-3xl text-white font-oxanium
             ">Panier</a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <hr class="w-5/6" />
+                <a href="{{ path('app_admin') }}" class="my-3 mx-2 text-3xl text-white font-oxanium">Ajouter</a>
+            {% endif %}
         </div>
     </div>
 </nav>
@@ -82,14 +86,17 @@
     <!-- Liens du menu -->
     <div class="flex space-x-6 md:space-x-10">
         <a href="{{ path('app_home') }}" class="hover:underline text-customWhite font-oxanium text-3xl">Accueil</a>
-        <a href="#" class="hover:underline text-customWhite font-oxanium text-3xl">À propos</a>
+        <a href="{{ path('app_about_us') }}" class="hover:underline text-customWhite font-oxanium text-3xl">À propos</a>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('app_admin') }}" class="hover:underline text-customWhite font-oxanium text-3xl">Ajouter</a>
+        {% endif %}
     </div>
 
   <!-- Icônes utilisateur et panier alignées à droite -->
 <div class="flex space-x-2 md:space-x-6 ml-auto">
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <!-- Si l'utilisateur est connecté, il est redirigé vers son profil -->
-        <a href="{{ path('app_profile') }}" class="py-2 px-2 md:px-4 text-white transform scale-100 rounded hover:bg-[#8a3031] transition duration-150">
+        <a href="{{ path('app_account') }}" class="py-2 px-2 md:px-4 text-white transform scale-100 rounded hover:bg-[#8a3031] transition duration-150">
             <i class="fas fa-user text-3xl"></i> <!-- Icône utilisateur -->
         </a>
     {% else %}
