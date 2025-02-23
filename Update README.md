@@ -57,6 +57,10 @@ composer install
 composer require symfony/console
 ```
 
+```
+ composer require symfony/rate-limiter
+```
+
 ### 4️⃣ Configurer l'environnement
 Créer un fichier `.env.local` et y ajouter le contenu du `.env`.
 
