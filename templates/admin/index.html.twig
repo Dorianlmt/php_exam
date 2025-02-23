@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panel {{ user.username }}{% endblock %}
+
+{% block body %}
+
+{% include '_components/_returnButton.html.twig' %}
+
+<!-- Formulaire pour ajouter un produit -->
+<div class="text-center">
+    
+    <form action="{{ path('app_add_article') }}" method="POST" class="flex flex-col place-items-center">
+
+        <div class="my-3 flex flex-col text-left w-2/3">
+            <p class="text-base font-oxanium text-customWhite mb-2">Nom :</p>
+            <input type="text" id="title" name="nom" class="mb-3 h-10
+            border-2 focus:border-3 border-customRed focus:outline-none rounded-[5px]
+            bg-customWhite font-oxanium text-base" required>
+        </div>
+
+        <div class="my-3 flex flex-col text-left w-2/3">
+            <p class="text-base font-oxanium text-customWhite mb-2">Description :</p>
+            <textarea id="content" name="content" class="mb-3 h-10
+                border-2 focus:border-3 border-customRed focus:outline-none rounded-[5px]
+                bg-customWhite font-oxanium text-base" rows="5" required></textarea>
+        </div>
+
+        <div class="my-3 flex flex-col text-left w-2/3">
+            <p class="text-base font-oxanium text-customWhite mb-2">L'image du produit :</p>
+            <input type="url" id="image" name="image" class="mb-3 h-10
+            border-2 focus:border-3 border-customRed focus:outline-none rounded-[5px]
+            bg-customWhite font-oxanium text-base" 
+            required>
+        </div>
+
+        <div class="my-3 flex flex-col text-left w-2/3">
+            <p class="text-base font-oxanium text-customWhite mb-2">Prix du produit :</p>
+            <input type="number" id="price" name="price" class="mb-3 h-10
+            border-2 focus:border-3 border-customRed focus:outline-none rounded-[5px]
+            bg-customWhite font-oxanium text-base" step="0.01" required>
+        </div>
+
+        <div class="my-3 flex flex-col text-left w-2/3">
+            <p class="text-base font-oxanium text-customWhite mb-2">Quantité</p>
+            <select id="quantity" name="quantity" class="mb-3 h-10
+            border-2 focus:border-3 border-customRed focus:outline-none rounded-[5px]
+            bg-customWhite font-oxanium text-base">
+                {% for i in 1..100 %}
+                    <option value="{{ i }}"> {{ i }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="my-3 flex flex-col text-left w-2/3">
+            <p class="text-base font-oxanium text-customWhite mb-2">Date de publication :</p>
+            <input type="date" id="date_publication" name="date_publication" class="mb-3 h-10
+            border-2 focus:border-3 border-customRed focus:outline-none rounded-[5px]
+            bg-customWhite font-oxanium text-base" required>
+        </div>
+
+        <button type="submit" class="px-4 py-2 my-5 h-1/2 w-2/3
+            border-2 border-customWhite rounded-md bg-customRed shadow-md
+            text-customWhite text-base font-oxanium">Ajouter le produit</button>
+    </form>
+</div>
+
+{% endblock %}
