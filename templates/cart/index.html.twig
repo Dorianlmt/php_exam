@@ -26,11 +26,6 @@
                     <p class="text-sm">{{ item.id_article.description }}</p>
                     <p class="text-lg text-semibold">{{ item.id_article.price }} €</p>
                 </div>
-                <div class="flex flex-row space-x-2 place-items-center">
-                    <p class="text-customWhite text-lg">Dans le panier: {1}</p>
-                    <form><input type="submit" class="text-customWhite bg-bodyColor rounded-md w-[32px] h-[32px] text-3xl" value="+"></form>
-                    <form><input type="submit" class="text-customWhite bg-bodyColor rounded-md w-[32px] h-[32px] text-3xl" value="-"></form>
-                </div>
                 <div class="flex flex-col place-items-center w-3/4 m-auto space-y-2 mt-2">
                     <a href="{{ path('app_article_detail', { 'id': item.id_article.id }) }}"
                         class="inline-block bg-bodyColor text-customWhite font-semibold text-center px-4 py-2 rounded hover:bg-[#494949] transition duration-150 w-full">
