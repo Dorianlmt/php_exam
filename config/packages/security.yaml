@@ -3,14 +3,6 @@ security:
         App\Entity\User:
             algorithm: auto
 
-<<<<<<< HEAD
-    role_hierarchy:
-        ROLE_USER: []
-        ROLE_ADMIN: [ROLE_USER]
-        ROLE_SUPER_ADMIN: [ROLE_ADMIN]
-
-=======
->>>>>>> 66499f2c0e9212abfab2ae78546968a246226e41
     providers:
         app_user_provider:
             entity:
@@ -24,7 +16,6 @@ security:
             form_login:
                 login_path: app_login
                 check_path: app_login
-<<<<<<< HEAD
                 username_parameter: email
                 password_parameter: password
             remember_me:
@@ -35,21 +26,10 @@ security:
                 path: app_logout
                 target: app_login
             login_throttling: true  # Limite les tentatives de connexion
-=======
-                username_parameter: email   # Symfony utilise maintenant "email" au lieu de "username"
-                password_parameter: password
-            logout:
-                path: app_logout
-                target: app_login
->>>>>>> 66499f2c0e9212abfab2ae78546968a246226e41
 
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/profile, roles: ROLE_USER }
-<<<<<<< HEAD
-=======
-
->>>>>>> 66499f2c0e9212abfab2ae78546968a246226e41
 
 framework:
     session:
